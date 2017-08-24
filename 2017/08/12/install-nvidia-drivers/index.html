@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  
+  <link rel="canonical" href="/2017/08/12/install-nvidia-drivers/" />
+  
+  <title>
+	  
+	    Установка драйверов NVIDIA в Fedora | DTEMIRGAZIYEV
+	  
+  </title>
+
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/uikit/2.27.2/css/uikit.min.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class="uk-block uk-block-large uk-block-muted">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+          <div id="header" class="clearfix">
+            <div class="uk-float-left">
+              <h2><a href="/">DTEMIRGAZIYEV</a></h2>
+            </div>
+            <div class="uk-float-right">
+              <a href="/" class="uk-button">Home</a>
+            </div>
+          </div>
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+<div class="uk-block uk-block-default">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+				<article class="uk-article">
+					<h1 class="uk-article-title" style="font-size: 23px;">
+						Установка драйверов NVIDIA в Fedora
+					</h1>
+					
+					<p class="uk-article-meta">Posted on Sat, Aug 12, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/nvidia" class="uk-button uk-button-mini">#nvidia</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/bumblebee" class="uk-button uk-button-mini">#bumblebee</a></p>
+
+          
+					<p>Устанавливаем проприетарные драйвера для видеокарт NVIDIA в Fedora. В заметке описывается установка проприетарного драйвера из репозитория RPMFusion и установка драйвера Bumblebee для NVIDIA Optimus.</p>
+
+<p>Как определить какой драйвер устанавливать? Можно посмотреть вывод следующей команды:</p>
+
+<pre><code class="language-bash">lspci | grep VGA
+</code></pre>
+
+<p>Если в выводе присутствуют видеокарты Intel и NVIDIA, то устанавливать нужно драйвер Bumblebee.</p>
+
+<h4 id="установка-драйвера-из-rpmfusion"><strong>Установка драйвера из RPMFusion</strong></h4>
+
+<p>Подключаем репозиторий RPMFusion:</p>
+
+<pre><code class="language-bash">sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+</code></pre>
+
+<p>Устанавливаем драйвер для видеокарт NVIDIA:</p>
+
+<pre><code class="language-bash">sudo dnf install akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs kernel-devel
+</code></pre>
+
+<p>Если вы являетесь пользователем устаревшей модели видеокарты NVIDIA, посмотрите варианты установки драйверов для устаревших видеокарт <a href="https://rpmfusion.org/Howto/NVIDIA#Legacy_GeForce_8.2F9.2F200">здесь</a>.</p>
+
+<p>После завершения установки, нужно вырезать свободный драйвер Nouveau из образа initrd:</p>
+
+<pre><code class="language-bash">sudo dracut -f /boot/initramfs-$(uname -r).img $(uname -r)
+</code></pre>
+
+<h4 id="установка-драйвера-bumblebee"><strong>Установка драйвера Bumblebee</strong></h4>
+
+<p>Подключаем репозиторий Bumblebee:</p>
+
+<pre><code class="language-bash">sudo dnf install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.2-1.noarch.rpm http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm
+</code></pre>
+
+<p>И устанавливаем драйвер Bumblebee для видеокарт NVIDIA Optimus:</p>
+
+<pre><code class="language-bash">sudo dnf install bumblebee-nvidia bbswitch-dkms primus kernel-devel
+</code></pre>
+
+<p>Пример запуска панели настройки NVIDIA:</p>
+
+<pre><code class="language-bash">optirun -b none nvidia-settings -c :8
+</code></pre>
+
+<p>Более подробная информация по использованию Bumblebee доступна на <a href="https://fedoraproject.org/wiki/Bumblebee">Wiki</a>.</p>
+          
+				</article>
+			</div>
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+		</div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <ul class="uk-pagination">
+          
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">&lt; Previous</a></li>
+          
+          
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Next &gt;</a></li>
+          
+        </ul>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+          <h3 class="uk-panel-title">Related Posts</h3>
+          
+          
+          <ul class="uk-list uk-list-striped">
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div id="disqus_thread" data-uk-scrollspy></div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+	</div>
+</div>
+
+	<div id="footer" class="uk-block uk-block-large uk-block-muted" data-uk-scrollspy="{repeat: true, delay: 600}">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+                  <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                      &copy; DTEMIRGAZIYEV
+                    </div>
+                    <div class="uk-width-1-1">
+                      Powered by <a href="http://gohugo.io">Hugo</a> | Themed by <a href="https://github.com/leopku/hugo-theme-next">NeXT</a>
+                    </div>
+                  </div>
+
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/uikit/2.27.2/js/uikit.min.js"></script>
+	<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

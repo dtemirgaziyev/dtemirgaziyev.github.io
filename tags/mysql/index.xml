@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mysql on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/mysql/</link>
+    <description>Recent content in Mysql on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Aug 2017 01:26:28 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Установка LAMP в CentOS/Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/11/lamp/</link>
+      <pubDate>Fri, 11 Aug 2017 01:26:28 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/11/lamp/</guid>
+      <description>&lt;p&gt;Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

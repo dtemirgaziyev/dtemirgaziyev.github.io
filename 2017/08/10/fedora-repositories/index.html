@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  
+  <link rel="canonical" href="/2017/08/10/fedora-repositories/" />
+  
+  <title>
+	  
+	    Подключение сторонних репозиториев в Fedora | DTEMIRGAZIYEV
+	  
+  </title>
+
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/uikit/2.27.2/css/uikit.min.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class="uk-block uk-block-large uk-block-muted">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+          <div id="header" class="clearfix">
+            <div class="uk-float-left">
+              <h2><a href="/">DTEMIRGAZIYEV</a></h2>
+            </div>
+            <div class="uk-float-right">
+              <a href="/" class="uk-button">Home</a>
+            </div>
+          </div>
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+<div class="uk-block uk-block-default">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+				<article class="uk-article">
+					<h1 class="uk-article-title" style="font-size: 23px;">
+						Подключение сторонних репозиториев в Fedora
+					</h1>
+					
+					<p class="uk-article-meta">Posted on Thu, Aug 10, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/dnf" class="uk-button uk-button-mini">#dnf</a> <a href="https://dtemirgaziyev.github.io//tags/repository" class="uk-button uk-button-mini">#repository</a></p>
+
+          
+					<p>В данной заметке вы узнаете какие полезные сторонние репозитории доступны для подключения в Fedora.</p>
+
+<h4 id="rpmfusion"><strong>RPMFusion</strong></h4>
+
+<p>Подключение и отключение репозитория RPMFusion (free, nonfree):</p>
+
+<pre><code class="language-bash">sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf config-manager --set-disabled rpmfusion-free rpmfusion-free-updates rpmfusion-nonfree rpmfusion-nonfree-updates
+</code></pre>
+
+<h4 id="russian-fedora"><strong>Russian Fedora</strong></h4>
+
+<p>Подключение и отключение репозитория Russian Fedora (free, nonfree, fixes):</p>
+
+<pre><code class="language-bash">sudo dnf install http://mirror.yandex.ru/fedora/russianfedora/russianfedora/free/fedora/russianfedora-free-release-stable.noarch.rpm http://mirror.yandex.ru/fedora/russianfedora/russianfedora/nonfree/fedora/russianfedora-nonfree-release-stable.noarch.rpm http://mirror.yandex.ru/fedora/russianfedora/russianfedora/fixes/fedora/russianfedora-fixes-release-stable.noarch.rpm
+sudo dnf config-manager --set-disabled russianfedora-free russianfedora-free-updates russianfedora-nonfree russianfedora-nonfree-updates russianfedora-fixes russianfedora-fixes-updates
+</code></pre>
+
+<h4 id="negativo17"><strong>Negativo17</strong></h4>
+
+<p>Подключение и отключение репозитория Negativo17:</p>
+
+<pre><code class="language-bash">sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-negativo17.repo
+sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/fedora-negativo17.repo
+</code></pre>
+
+<h4 id="bumblebee"><strong>Bumblebee</strong></h4>
+
+<p>Подключение и отключение репозитория Bumblebee:</p>
+
+<pre><code class="language-bash">sudo dnf install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.2-1.noarch.rpm http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm
+sudo dnf config-manager --set-disabled bumblebee bumblebee-nonfree
+</code></pre>
+          
+				</article>
+			</div>
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+		</div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <ul class="uk-pagination">
+          
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">&lt; Previous</a></li>
+          
+          
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/10/keyboard-shortcuts-in-bash/">Next &gt;</a></li>
+          
+        </ul>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+          <h3 class="uk-panel-title">Related Posts</h3>
+          
+          
+          <ul class="uk-list uk-list-striped">
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">Подключение сторонних репозиториев в CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div id="disqus_thread" data-uk-scrollspy></div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+	</div>
+</div>
+
+	<div id="footer" class="uk-block uk-block-large uk-block-muted" data-uk-scrollspy="{repeat: true, delay: 600}">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+                  <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                      &copy; DTEMIRGAZIYEV
+                    </div>
+                    <div class="uk-width-1-1">
+                      Powered by <a href="http://gohugo.io">Hugo</a> | Themed by <a href="https://github.com/leopku/hugo-theme-next">NeXT</a>
+                    </div>
+                  </div>
+
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/uikit/2.27.2/js/uikit.min.js"></script>
+	<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

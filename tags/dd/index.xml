@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dd on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/dd/</link>
+    <description>Recent content in Dd on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Aug 2017 01:32:39 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/dd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Создание загрузочного USB накопителя в Linux</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/creating-bootable-usb/</link>
+      <pubDate>Sat, 12 Aug 2017 01:32:39 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/creating-bootable-usb/</guid>
+      <description>&lt;p&gt;Как создать загрузочный USB накопитель в любом дистрибутиве Linux.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Repository on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/repository/</link>
+    <description>Recent content in Repository on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Aug 2017 01:56:40 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/repository/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Подключение сторонних репозиториев в CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/</link>
+      <pubDate>Wed, 16 Aug 2017 01:56:40 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/</guid>
+      <description>&lt;p&gt;Подключение сторонних репозиториев в CentOS (RHEL) и защита основного репозитория с помощью плагина yum-priorities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Подключение сторонних репозиториев в Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/</link>
+      <pubDate>Thu, 10 Aug 2017 20:44:14 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/</guid>
+      <description>&lt;p&gt;В данной заметке вы узнаете какие полезные сторонние репозитории доступны для подключения в Fedora.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

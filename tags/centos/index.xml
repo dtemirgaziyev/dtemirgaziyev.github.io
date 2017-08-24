@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Centos on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/centos/</link>
+    <description>Recent content in Centos on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Aug 2017 01:56:27 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Установка DokuWiki на CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</link>
+      <pubDate>Mon, 21 Aug 2017 01:56:27 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</guid>
+      <description>&lt;p&gt;Устанавливаем вики-движок DokuWiki на сервер под управлением CentOS 7 Minimal.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>youtube-dl</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</link>
+      <pubDate>Mon, 21 Aug 2017 01:56:17 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</guid>
+      <description>&lt;p&gt;youtube-dl - консольная утилита для загрузки видео с YouTube и множества других сайтов и видеохостингов.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Подключение сторонних репозиториев в CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/</link>
+      <pubDate>Wed, 16 Aug 2017 01:56:40 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/</guid>
+      <description>&lt;p&gt;Подключение сторонних репозиториев в CentOS (RHEL) и защита основного репозитория с помощью плагина yum-priorities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Taskwarrior</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</link>
+      <pubDate>Sat, 12 Aug 2017 02:32:41 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</guid>
+      <description>&lt;p&gt;Taskwarrior - гибкая и мощная консольная утилита для управления списком задач из командной строки.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Установка LAMP в CentOS/Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/11/lamp/</link>
+      <pubDate>Fri, 11 Aug 2017 01:26:28 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/11/lamp/</guid>
+      <description>&lt;p&gt;Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

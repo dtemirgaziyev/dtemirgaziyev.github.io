@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/apache/</link>
+    <description>Recent content in Apache on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Aug 2017 01:56:27 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Установка DokuWiki на CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</link>
+      <pubDate>Mon, 21 Aug 2017 01:56:27 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</guid>
+      <description>&lt;p&gt;Устанавливаем вики-движок DokuWiki на сервер под управлением CentOS 7 Minimal.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Установка LAMP в CentOS/Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/11/lamp/</link>
+      <pubDate>Fri, 11 Aug 2017 01:26:28 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/11/lamp/</guid>
+      <description>&lt;p&gt;Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

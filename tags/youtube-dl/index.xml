@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Youtube Dl on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/youtube-dl/</link>
+    <description>Recent content in Youtube Dl on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Aug 2017 01:56:17 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/youtube-dl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>youtube-dl</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</link>
+      <pubDate>Mon, 21 Aug 2017 01:56:17 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</guid>
+      <description>&lt;p&gt;youtube-dl - консольная утилита для загрузки видео с YouTube и множества других сайтов и видеохостингов.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

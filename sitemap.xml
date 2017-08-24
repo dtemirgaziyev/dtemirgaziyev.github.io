@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</loc>
+    <lastmod>2017-08-21T01:56:17+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/21/bash-history/</loc>
+    <lastmod>2017-08-21T01:23:46+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/</loc>
+    <lastmod>2017-08-16T01:56:40+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/</loc>
+    <lastmod>2017-08-12T02:34:06+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/</loc>
+    <lastmod>2017-08-12T02:33:12+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</loc>
+    <lastmod>2017-08-12T02:32:41+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/12/creating-bootable-usb/</loc>
+    <lastmod>2017-08-12T01:32:39+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/</loc>
+    <lastmod>2017-08-11T23:33:27+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/11/lamp/</loc>
+    <lastmod>2017-08-11T01:26:28+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/</loc>
+    <lastmod>2017-08-10T20:44:14+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/10/keyboard-shortcuts-in-bash/</loc>
+    <lastmod>2017-08-10T20:44:01+05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/apache/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/bash/</loc>
+    <lastmod>2017-08-21T01:23:46+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/bootable-usb/</loc>
+    <lastmod>2017-08-12T01:32:39+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/bumblebee/</loc>
+    <lastmod>2017-08-12T02:33:12+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/centos/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/codecs/</loc>
+    <lastmod>2017-08-11T23:33:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/dd/</loc>
+    <lastmod>2017-08-12T01:32:39+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/dnf/</loc>
+    <lastmod>2017-08-12T02:34:06+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/dokuwiki/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/fedora/</loc>
+    <lastmod>2017-08-21T01:56:17+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/gstreamer/</loc>
+    <lastmod>2017-08-11T23:33:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/history/</loc>
+    <lastmod>2017-08-21T01:23:46+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/lamp/</loc>
+    <lastmod>2017-08-11T01:26:28+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/multimedia/</loc>
+    <lastmod>2017-08-11T23:33:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/mysql/</loc>
+    <lastmod>2017-08-11T01:26:28+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/nvidia/</loc>
+    <lastmod>2017-08-12T02:33:12+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/post/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/repository/</loc>
+    <lastmod>2017-08-16T01:56:40+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/shortcuts/</loc>
+    <lastmod>2017-08-10T20:44:01+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/system-upgrade/</loc>
+    <lastmod>2017-08-12T02:34:06+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/</loc>
+    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/taskwarrior/</loc>
+    <lastmod>2017-08-12T02:32:41+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/wordpress/</loc>
+    <lastmod>2017-08-11T01:26:28+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/youtube-dl/</loc>
+    <lastmod>2017-08-21T01:56:17+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/yum/</loc>
+    <lastmod>2017-08-16T01:56:40+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

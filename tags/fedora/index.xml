@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fedora on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/fedora/</link>
+    <description>Recent content in Fedora on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Aug 2017 01:56:17 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>youtube-dl</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</link>
+      <pubDate>Mon, 21 Aug 2017 01:56:17 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/</guid>
+      <description>&lt;p&gt;youtube-dl - консольная утилита для загрузки видео с YouTube и множества других сайтов и видеохостингов.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fedora - обновление системы</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/</link>
+      <pubDate>Sat, 12 Aug 2017 02:34:06 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/</guid>
+      <description>&lt;p&gt;Процедура обновления Fedora на следующую версию дистрибутива. В данной заметке обновление происходит с версии 25 на 26.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Установка драйверов NVIDIA в Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/</link>
+      <pubDate>Sat, 12 Aug 2017 02:33:12 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/</guid>
+      <description>&lt;p&gt;Устанавливаем проприетарные драйвера для видеокарт NVIDIA в Fedora. В заметке описывается установка проприетарного драйвера из репозитория RPMFusion и установка драйвера Bumblebee для NVIDIA Optimus.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Taskwarrior</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</link>
+      <pubDate>Sat, 12 Aug 2017 02:32:41 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</guid>
+      <description>&lt;p&gt;Taskwarrior - гибкая и мощная консольная утилита для управления списком задач из командной строки.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Установка мультимедийных кодеков в Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/</link>
+      <pubDate>Fri, 11 Aug 2017 23:33:27 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/</guid>
+      <description>&lt;p&gt;Устанавливаем мультимедийные кодеки и улучшаем поддержку мультимедийного контента в Fedora.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Установка LAMP в CentOS/Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/11/lamp/</link>
+      <pubDate>Fri, 11 Aug 2017 01:26:28 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/11/lamp/</guid>
+      <description>&lt;p&gt;Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Подключение сторонних репозиториев в Fedora</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/</link>
+      <pubDate>Thu, 10 Aug 2017 20:44:14 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/</guid>
+      <description>&lt;p&gt;В данной заметке вы узнаете какие полезные сторонние репозитории доступны для подключения в Fedora.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

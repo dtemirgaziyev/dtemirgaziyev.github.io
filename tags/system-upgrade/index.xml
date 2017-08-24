@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System Upgrade on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/system-upgrade/</link>
+    <description>Recent content in System Upgrade on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Aug 2017 02:34:06 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/system-upgrade/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fedora - обновление системы</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/</link>
+      <pubDate>Sat, 12 Aug 2017 02:34:06 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/</guid>
+      <description>&lt;p&gt;Процедура обновления Fedora на следующую версию дистрибутива. В данной заметке обновление происходит с версии 25 на 26.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  
+  <link rel="canonical" href="/2017/08/11/lamp/" />
+  
+  <title>
+	  
+	    Установка LAMP в CentOS/Fedora | DTEMIRGAZIYEV
+	  
+  </title>
+
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/uikit/2.27.2/css/uikit.min.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class="uk-block uk-block-large uk-block-muted">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+          <div id="header" class="clearfix">
+            <div class="uk-float-left">
+              <h2><a href="/">DTEMIRGAZIYEV</a></h2>
+            </div>
+            <div class="uk-float-right">
+              <a href="/" class="uk-button">Home</a>
+            </div>
+          </div>
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+<div class="uk-block uk-block-default">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+				<article class="uk-article">
+					<h1 class="uk-article-title" style="font-size: 23px;">
+						Установка LAMP в CentOS/Fedora
+					</h1>
+					
+					<p class="uk-article-meta">Posted on Fri, Aug 11, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/lamp" class="uk-button uk-button-mini">#lamp</a> <a href="https://dtemirgaziyev.github.io//tags/apache" class="uk-button uk-button-mini">#apache</a> <a href="https://dtemirgaziyev.github.io//tags/mysql" class="uk-button uk-button-mini">#mysql</a> <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/wordpress" class="uk-button uk-button-mini">#wordpress</a></p>
+
+          
+					<p>Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.</p>
+
+<h4 id="обновление-системы"><strong>Обновление системы</strong></h4>
+
+<p>Установите последние обновления на сервер:</p>
+
+<pre><code class="language-bash">sudo yum update
+sudo dnf upgrade
+</code></pre>
+
+<p>Установите дополнительное ПО для администрирования системы:</p>
+
+<pre><code class="language-bash">sudo yum -y install bash-completion vim wget screen policycoreutils-python
+sudo dnf -y install bash-completion vim wget screen policycoreutils-python-utils
+</code></pre>
+
+<p>После обновления обычно рекомендуется перезагрузить систему:</p>
+
+<pre><code class="language-bash">systemctl reboot
+</code></pre>
+
+<h4 id="установка-lamp"><strong>Установка LAMP</strong></h4>
+
+<p>Установите все необходимые компоненты для WordPress: веб сервер Apache, службу управления базами данных MariaDB, PHP и необходимые модули.</p>
+
+<pre><code class="language-bash">sudo yum -y install httpd mariadb mariadb-server php php-mysqld
+sudo dnf -y install httpd mariadb mariadb-server php php-mysqlnd
+</code></pre>
+
+<p>Измените конфигурацию сетевого экрана для доступа по протоколам HTTP и HTTPS:</p>
+
+<pre><code class="language-bash">sudo firewall-cmd --add-service={http,https} --permanent
+sudo firewall-cmd --reload
+</code></pre>
+
+<p>Запустите и активируйте автоматический запуск для служб веб сервера Apache и MariaDB:</p>
+
+<pre><code class="language-bash">sudo systemctl start httpd mariadb
+sudo systemctl enable httpd mariadb
+</code></pre>
+
+<h4 id="настройка-web-сервера"><strong>Настройка Web-сервера</strong></h4>
+
+<p>Скачайте архив WordPress с официального сайта:</p>
+
+<pre><code class="language-bash">wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
+</code></pre>
+
+<p>Разархивируйте архив WordPress в директорию <strong>/var/www</strong>:</p>
+
+<pre><code class="language-bash">sudo tar xzvf /tmp/wordpress.tar.gz -C /var/www
+</code></pre>
+
+<p>Создайте конфигурационный файл виртуального хоста <strong>/etc/httpd/conf.d/mysite.conf</strong> со следующим содержимым:</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName mysite.kz
+    ServerAlias mysite.kz
+    DocumentRoot /var/www/wordpress
+    ErrorLog /var/log/httpd/error_mysite.kz.log
+    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-agent}i\&quot;&quot; mysite.kz
+    CustomLog /var/log/httpd/access_mysite.kz.log mysite.kz
+    &lt;Directory /var/www/wordpress&gt;
+        AllowOverride All
+        Options Indexes FollowSymLinks
+        Require all granted
+    &lt;/Directory&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>Перезапустите службу Web-сервера:</p>
+
+<pre><code class="language-bash">sudo systemctl restart httpd
+</code></pre>
+
+<h4 id="создание-и-настройка-базы-данных"><strong>Создание и настройка базы данных</strong></h4>
+
+<p>Сделайте первичную настройку службы управления базами данных MariaDB:</p>
+
+<pre><code class="language-bash">mysql_secure_installation
+</code></pre>
+
+<p>Зайдите в консоль службы управления базами данных MariaDB:</p>
+
+<pre><code class="language-bash">mysql -u root -p
+</code></pre>
+
+<p>Создайте пользователя и базу данных для WordPress:</p>
+
+<pre><code class="language-bash">CREATE USER wordpress@localhost IDENTIFIED BY &quot;Password&quot;;
+CREATE DATABASE wordpressdb;
+</code></pre>
+
+<p>Выдайте все права на базу данных <strong>wordpressdb</strong> пользователю <strong>wordpress@localhost</strong>:</p>
+
+<pre><code class="language-bash">GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpress@localhost;
+FLUSH PRIVILEGES;
+</code></pre>
+
+<h4 id="установка-wordpress"><strong>Установка WordPress</strong></h4>
+
+<p>Перейдите в директорию <strong>/var/www/wordpress</strong> и скопируйте пример конфигурационного файла WordPress:</p>
+
+<pre><code class="language-bash">cd /var/www/wordpress
+cp wp-config-sample.php wp-config.php
+</code></pre>
+
+<p>Измените в конфигурационном файле <strong>wp-config.php</strong> следующие строки:</p>
+
+<pre><code>define('DB_NAME', 'wordpressdb');
+define('DB_USER', 'wordpress');
+define('DB_PASSWORD', 'Password');
+</code></pre>
+
+<p>Измените права доступа на директорию в которой лежат файлы WordPress:</p>
+
+<pre><code class="language-bash">sudo chown -R apache:apache /var/www/wordpress
+sudo chmod -R 750 /var/www/wordpress
+</code></pre>
+
+<p>Перейдите в браузере по адресу: <strong>mysite.kz/wp-admin/install.php</strong>, заполните все поля и нажмите «Установить WordPress».</p>
+          
+				</article>
+			</div>
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+		</div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <ul class="uk-pagination">
+          
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">&lt; Previous</a></li>
+          
+          
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Next &gt;</a></li>
+          
+        </ul>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+          <h3 class="uk-panel-title">Related Posts</h3>
+          
+          
+          <ul class="uk-list uk-list-striped">
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">Установка DokuWiki на CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">Подключение сторонних репозиториев в CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div id="disqus_thread" data-uk-scrollspy></div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+	</div>
+</div>
+
+	<div id="footer" class="uk-block uk-block-large uk-block-muted" data-uk-scrollspy="{repeat: true, delay: 600}">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+                  <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                      &copy; DTEMIRGAZIYEV
+                    </div>
+                    <div class="uk-width-1-1">
+                      Powered by <a href="http://gohugo.io">Hugo</a> | Themed by <a href="https://github.com/leopku/hugo-theme-next">NeXT</a>
+                    </div>
+                  </div>
+
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/uikit/2.27.2/js/uikit.min.js"></script>
+	<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

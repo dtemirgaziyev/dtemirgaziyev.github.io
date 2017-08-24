@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  
+  <link rel="canonical" href="/2017/08/12/taskwarrior/" />
+  
+  <title>
+	  
+	    Taskwarrior | DTEMIRGAZIYEV
+	  
+  </title>
+
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/uikit/2.27.2/css/uikit.min.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class="uk-block uk-block-large uk-block-muted">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+          <div id="header" class="clearfix">
+            <div class="uk-float-left">
+              <h2><a href="/">DTEMIRGAZIYEV</a></h2>
+            </div>
+            <div class="uk-float-right">
+              <a href="/" class="uk-button">Home</a>
+            </div>
+          </div>
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+<div class="uk-block uk-block-default">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+				<article class="uk-article">
+					<h1 class="uk-article-title" style="font-size: 23px;">
+						Taskwarrior
+					</h1>
+					
+					<p class="uk-article-meta">Posted on Sat, Aug 12, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/taskwarrior" class="uk-button uk-button-mini">#taskwarrior</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a></p>
+
+          
+					<p>Taskwarrior - гибкая и мощная консольная утилита для управления списком задач из командной строки.</p>
+
+<p>Установка Taskwarrior в Fedora:</p>
+
+<pre><code class="language-bash">sudo dnf -y install task
+</code></pre>
+
+<p>Для установки Taskwarrior в CentOS (и RHEL) требуется подключить репозиторий EPEL:</p>
+
+<pre><code class="language-bash">sudo yum install epel-release
+sudo yum -y install task
+</code></pre>
+
+<p>После первого запуска Taskwarrior вам будет предложено создать конфигурационный файл: <strong>~/.taskrc</strong>, введите «yes» чтобы согласится.</p>
+
+<pre><code class="language-bash">task
+</code></pre>
+
+<p>Добавляем свою первую задачу в Taskwarrior:</p>
+
+<pre><code class="language-bash">task add My first task
+</code></pre>
+
+<p>Смотрим добавленные задачи в списке задач:</p>
+
+<pre><code class="language-bash">task list
+</code></pre>
+
+<p>Отмечаем что начали работать над выполнением первой задачи:</p>
+
+<pre><code class="language-bash">task 1 start
+</code></pre>
+
+<p>Изменяем приоритет на самый высокий (H) для первой задачи:</p>
+
+<pre><code class="language-bash">task 1 modify priority:H
+</code></pre>
+
+<p>Изменяем проект для первой задачи:</p>
+
+<pre><code class="language-bash">task 1 modify project:Myproject
+</code></pre>
+
+<p>Отмечаем что завершили работу над первой задачей:</p>
+
+<pre><code class="language-bash">task 1 done
+</code></pre>
+
+<p>Для дальнейшего изучения возможностей утилиты Taskwarrior читайте <a href="https://taskwarrior.org/docs/">официальную документацию</a>.</p>
+          
+				</article>
+			</div>
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+		</div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <ul class="uk-pagination">
+          
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">&lt; Previous</a></li>
+          
+          
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/creating-bootable-usb/">Next &gt;</a></li>
+          
+        </ul>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+          <h3 class="uk-panel-title">Related Posts</h3>
+          
+          
+          <ul class="uk-list uk-list-striped">
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">Установка DokuWiki на CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">Подключение сторонних репозиториев в CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div id="disqus_thread" data-uk-scrollspy></div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+	</div>
+</div>
+
+	<div id="footer" class="uk-block uk-block-large uk-block-muted" data-uk-scrollspy="{repeat: true, delay: 600}">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+                  <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                      &copy; DTEMIRGAZIYEV
+                    </div>
+                    <div class="uk-width-1-1">
+                      Powered by <a href="http://gohugo.io">Hugo</a> | Themed by <a href="https://github.com/leopku/hugo-theme-next">NeXT</a>
+                    </div>
+                  </div>
+
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/uikit/2.27.2/js/uikit.min.js"></script>
+	<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

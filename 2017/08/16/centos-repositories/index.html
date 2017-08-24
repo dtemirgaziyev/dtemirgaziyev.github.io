@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//www.google-analytics.com" />
+  
+  <link rel="canonical" href="/2017/08/16/centos-repositories/" />
+  
+  <title>
+	  
+	    Подключение сторонних репозиториев в CentOS | DTEMIRGAZIYEV
+	  
+  </title>
+
+  
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/uikit/2.27.2/css/uikit.min.css" />
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+	<div class="uk-block uk-block-large uk-block-muted">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+          <div id="header" class="clearfix">
+            <div class="uk-float-left">
+              <h2><a href="/">DTEMIRGAZIYEV</a></h2>
+            </div>
+            <div class="uk-float-right">
+              <a href="/" class="uk-button">Home</a>
+            </div>
+          </div>
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+<div class="uk-block uk-block-default">
+	<div class="uk-container uk-container-center">
+		<div class="uk-grid">
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+				<article class="uk-article">
+					<h1 class="uk-article-title" style="font-size: 23px;">
+						Подключение сторонних репозиториев в CentOS
+					</h1>
+					
+					<p class="uk-article-meta">Posted on Wed, Aug 16, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/repository" class="uk-button uk-button-mini">#repository</a> <a href="https://dtemirgaziyev.github.io//tags/yum" class="uk-button uk-button-mini">#yum</a></p>
+
+          
+					<p>Подключение сторонних репозиториев в CentOS (RHEL) и защита основного репозитория с помощью плагина yum-priorities.</p>
+
+<h4 id="защита-основного-репозитория"><strong>Защита основного репозитория</strong></h4>
+
+<p>Перед подключением сторонних репозиториев, рекомендуется защитить основной репозиторий посредством настройки плагина yum-priorities.</p>
+
+<p>Установите плагин для настройки приоритетов:</p>
+
+<pre><code class="language-bash">sudo yum -y install yum-plugin-priorities
+</code></pre>
+
+<p>Установите приоритет равный 1 в конфигурационных файлах основного репозитория:</p>
+
+<pre><code class="language-bash">sudo sed -i '/name=*/a priority=1' /etc/yum.repos.d/CentOS-*.repo
+</code></pre>
+
+<p>Дополнительная информация о yum-priorities доступна на <a href="https://wiki.centos.org/PackageManagement/Yum/Priorities">Wiki</a>.</p>
+
+<h4 id="scl"><strong>SCL</strong></h4>
+
+<p>Подключение репозитория SCL (Software Collections):</p>
+
+<pre><code class="language-bash">sudo yum install centos-release-scl
+</code></pre>
+
+<h4 id="epel"><strong>EPEL</strong></h4>
+
+<p>Подключение репозитория EPEL:</p>
+
+<pre><code class="language-bash">sudo yum install epel-release
+</code></pre>
+
+<h4 id="nux-dextop"><strong>Nux Dextop</strong></h4>
+
+<p>Подключение репозитория Nux Dextop:</p>
+
+<pre><code class="language-bash">sudo yum localinstall http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+</code></pre>
+
+<h4 id="elrepo"><strong>ELRepo</strong></h4>
+
+<p>Подключение репозитория ELRepo:</p>
+
+<pre><code class="language-bash">sudo yum localinstall http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+</code></pre>
+
+<h4 id="remi"><strong>Remi</strong></h4>
+
+<p>Подключение репозитория Remi:</p>
+
+<pre><code class="language-bash">sudo yum localinstall https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+</code></pre>
+
+<h4 id="ius"><strong>IUS</strong></h4>
+
+<p>Подключение репозитория IUS:</p>
+
+<pre><code class="language-bash">sudo yum localinstall https://centos7.iuscommunity.org/ius-release.rpm
+</code></pre>
+          
+				</article>
+			</div>
+			<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+		</div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <ul class="uk-pagination">
+          
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/21/bash-history/">&lt; Previous</a></li>
+          
+          
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Next &gt;</a></li>
+          
+        </ul>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div class="uk-panel uk-panel-box uk-panel-box-secondary">
+          <h3 class="uk-panel-title">Related Posts</h3>
+          
+          
+          <ul class="uk-list uk-list-striped">
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">Установка DokuWiki на CentOS</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+          </ul>
+        </div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+    <div class="uk-grid">
+      <div class="uk-width-large-1-10"></div>
+      <div class="uk-width-large-8-10">
+        <div id="disqus_thread" data-uk-scrollspy></div>
+      </div>
+      <div class="uk-width-large-1-10"></div>
+    </div>
+	</div>
+</div>
+
+	<div id="footer" class="uk-block uk-block-large uk-block-muted" data-uk-scrollspy="{repeat: true, delay: 600}">
+		<div class="uk-container uk-container-center">
+			<div class="uk-grid">
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+				<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
+                  <div class="uk-grid">
+                    <div class="uk-width-1-1">
+                      &copy; DTEMIRGAZIYEV
+                    </div>
+                    <div class="uk-width-1-1">
+                      Powered by <a href="http://gohugo.io">Hugo</a> | Themed by <a href="https://github.com/leopku/hugo-theme-next">NeXT</a>
+                    </div>
+                  </div>
+
+				</div>
+				<div class="uk-width-large-1-10 uk-hidden-medium uk-hidden-small"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//cdn.jsdelivr.net/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.jsdelivr.net/uikit/2.27.2/js/uikit.min.js"></script>
+	<script src="//cdn.jsdelivr.net/highlight.js/9.10.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

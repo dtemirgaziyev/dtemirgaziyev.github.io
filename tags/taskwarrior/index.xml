@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Taskwarrior on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/taskwarrior/</link>
+    <description>Recent content in Taskwarrior on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Aug 2017 02:32:41 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/taskwarrior/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Taskwarrior</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</link>
+      <pubDate>Sat, 12 Aug 2017 02:32:41 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/</guid>
+      <description>&lt;p&gt;Taskwarrior - гибкая и мощная консольная утилита для управления списком задач из командной строки.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
