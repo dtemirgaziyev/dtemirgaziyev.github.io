@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/21/install-dokuwiki/" />
+  <link rel="canonical" href="/2017/08/26/display-weather-in-cli/" />
   
   <title>
 	  
-	    Установка DokuWiki на CentOS | DTEMIRGAZIYEV
+	    Посмотреть прогноз погоды в командной строке | DTEMIRGAZIYEV
 	  
   </title>
 
@@ -48,97 +48,28 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Установка DokuWiki на CentOS
+						Посмотреть прогноз погоды в командной строке
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Mon, Aug 21, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/dokuwiki" class="uk-button uk-button-mini">#dokuwiki</a> <a href="https://dtemirgaziyev.github.io//tags/apache" class="uk-button uk-button-mini">#apache</a></p>
+					<p class="uk-article-meta">Posted on Sat, Aug 26, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/curl" class="uk-button uk-button-mini">#curl</a> <a href="https://dtemirgaziyev.github.io//tags/wttr.in" class="uk-button uk-button-mini">#wttr.in</a></p>
 
           
-					<p>Устанавливаем вики-движок DokuWiki на сервер под управлением CentOS 7 Minimal.</p>
+					<p>Узнаем прогноз погоды в командной строке с помощью сервиса <a href="http://wttr.in">wttr.in</a> и утилиты curl.</p>
 
-<h4 id="обновление-системы"><strong>Обновление системы</strong></h4>
+<p>Посмотреть прогноз погоды в командной строке:</p>
 
-<p>Настроим сетевое подключение с помощью nmtui:</p>
-
-<pre><code class="language-bash">nmtui
+<pre><code class="language-bash">curl wttr.in/Astana
+curl wttr.in/Almaty
 </code></pre>
 
-<p>Установим последние обновления и перезагрузим систему:</p>
+<p>Посмотреть справку:</p>
 
-<pre><code class="language-bash">sudo yum update
-systemctl reboot
+<pre><code class="language-bash">curl wttr.in/:help
 </code></pre>
 
-<p>Установим дополнительное ПО для облегчения администрирования системы:</p>
+<p><img src="/images/screen_wttr.png" alt="Screenshot" title="Screenshot" /></p>
 
-<pre><code class="language-bash">sudo yum -y install bash-completion wget vim policycoreutils-python
-</code></pre>
-
-<h4 id="установка-web-сервера"><strong>Установка Web-сервера</strong></h4>
-
-<p>Поставим web-сервер Apache:</p>
-
-<pre><code class="language-bash">sudo yum -y install httpd php php-gd
-</code></pre>
-
-<p>Изменим конфигурацию firewalld:</p>
-
-<pre><code class="language-bash">sudo firewall-cmd --add-service={http,https} --permanent
-sudo firewall-cmd --reload
-</code></pre>
-
-<p>Запустим и активируем автоматический запуск для службы web-сервера:</p>
-
-<pre><code class="language-bash">sudo systemctl start httpd
-sudo systemctl enable httpd
-</code></pre>
-
-<h4 id="настройка-web-сервера"><strong>Настройка Web-сервера</strong></h4>
-
-<p>Скачаем с официального сайта тарболл с DokuWiki и разархивируем содержимое в <strong>/var/www</strong>:</p>
-
-<pre><code class="language-bash">sudo wget https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz -O /tmp/dokuwiki.tgz
-sudo tar xzvf /tmp/dokuwiki.tgz -C /var/www
-</code></pre>
-
-<p>Изменим права для директории где лежит DokuWiki:</p>
-
-<pre><code class="language-bash">sudo chown -R apache:apache /var/www/dokuwiki
-sudo chmod -R 750 /var/www/dokuwiki
-</code></pre>
-
-<p>Создадим конфигурационный файл виртуального хоста <strong>/etc/httpd/conf.d/dokuwiki.conf</strong> со следующим содержимым:</p>
-
-<pre><code class="language-bash">&lt;VirtualHost *:80&gt;
-    ServerName wiki.mysite.kz
-    ServerAlias wiki.mysite.kz
-    DocumentRoot /var/www/dokuwiki
-    ErrorLog /var/log/httpd/error_wiki.mysite.kz.log
-    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-agent}i\&quot;&quot; wiki.mysite.kz
-    CustomLog /var/log/httpd/access_mysite.kz.log wiki.mysite.kz
-    &lt;Directory /var/www/dokuwiki&gt;
-        AllowOverride None
-        Options -Indexes FollowSymLinks
-        Require all granted
-    &lt;/Directory&gt;
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<p>Изменим контекст SELinux для файлов в директориях <strong>/var/www/dokuwiki/conf</strong> и <strong>/var/www/dokuwiki/data</strong>:</p>
-
-<pre><code class="language-bash">sudo semanage fcontext -a -t httpd_sys_rw_content_t /var/www/dokuwiki/conf
-sudo semanage fcontext -a -t httpd_sys_rw_content_t /var/www/dokuwiki/data
-sudo restorecon -R -v /var/www/dokuwiki
-</code></pre>
-
-<p>На этом настройка на сервере завершена, теперь перейдите по адресу <strong>wiki.mysite.kz</strong> и ответьте на вопросы инсталлятора.</p>
-
-<p>После завершения установки не забудьте удалить файл <strong>install.php</strong>:</p>
-
-<pre><code class="language-bash">sudo rm -f /var/www/html/dokuwiki/install.php
-</code></pre>
-
-<p>Дополнительную документацию по настройке, ищите на официальных сайтах <a href="http://httpd.apache.org/">Apache</a> и <a href="https://www.dokuwiki.org/">DokuWiki</a>.</p>
+<p>Репозиторий wttr.in на <a href="https://github.com/chubin/wttr.in">GitHub</a>.</p>
           
 				</article>
 			</div>
@@ -149,10 +80,8 @@ sudo restorecon -R -v /var/www/dokuwiki
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -178,18 +107,6 @@ sudo restorecon -R -v /var/www/dokuwiki
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
-              
-            
-              
-              
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">Подключение сторонних репозиториев в CentOS</a></li>
-              
             
               
               
@@ -201,8 +118,6 @@ sudo restorecon -R -v /var/www/dokuwiki
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
               
             
               
@@ -216,7 +131,13 @@ sudo restorecon -R -v /var/www/dokuwiki
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+            
+              
+              
+              
+            
+              
+              
               
             
               

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wttr.in on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/wttr.in/</link>
+    <description>Recent content in Wttr.in on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Aug 2017 14:58:08 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/wttr.in/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Посмотреть прогноз погоды в командной строке</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/</link>
+      <pubDate>Sat, 26 Aug 2017 14:58:08 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/</guid>
+      <description>&lt;p&gt;Узнаем прогноз погоды в командной строке с помощью сервиса &lt;a href=&#34;http://wttr.in&#34;&gt;wttr.in&lt;/a&gt; и утилиты curl.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

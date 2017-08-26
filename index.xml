@@ -6,10 +6,19 @@
     <description>Recent content on DTEMIRGAZIYEV</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Aug 2017 01:56:27 +0500</lastBuildDate>
+    <lastBuildDate>Sat, 26 Aug 2017 14:58:08 +0500</lastBuildDate>
     
 	<atom:link href="https://dtemirgaziyev.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Посмотреть прогноз погоды в командной строке</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/</link>
+      <pubDate>Sat, 26 Aug 2017 14:58:08 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/</guid>
+      <description>&lt;p&gt;Узнаем прогноз погоды в командной строке с помощью сервиса &lt;a href=&#34;http://wttr.in&#34;&gt;wttr.in&lt;/a&gt; и утилиты curl.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Установка DokuWiki на CentOS</title>

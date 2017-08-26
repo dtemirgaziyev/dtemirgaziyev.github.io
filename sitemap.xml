@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/</loc>
+    <lastmod>2017-08-26T14:58:08+05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/</loc>
     <lastmod>2017-08-21T01:56:27+05:00</lastmod>
   </url>
@@ -99,8 +104,14 @@
   </url>
   
   <url>
+    <loc>https://dtemirgaziyev.github.io/tags/curl/</loc>
+    <lastmod>2017-08-26T14:58:08+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://dtemirgaziyev.github.io/</loc>
-    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <lastmod>2017-08-26T14:58:08+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -166,7 +177,7 @@
   
   <url>
     <loc>https://dtemirgaziyev.github.io/post/</loc>
-    <lastmod>2017-08-21T01:56:27+05:00</lastmod>
+    <lastmod>2017-08-26T14:58:08+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -203,6 +214,12 @@
   <url>
     <loc>https://dtemirgaziyev.github.io/tags/wordpress/</loc>
     <lastmod>2017-08-11T01:26:28+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/tags/wttr.in/</loc>
+    <lastmod>2017-08-26T14:58:08+05:00</lastmod>
     <priority>0</priority>
   </url>
   
