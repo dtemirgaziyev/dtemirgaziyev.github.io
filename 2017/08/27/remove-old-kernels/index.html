@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/21/youtube-dl/" />
+  <link rel="canonical" href="/2017/08/27/remove-old-kernels/" />
   
   <title>
 	  
-	    youtube-dl | DTEMIRGAZIYEV
+	    Удаление старых ядер в CentOS | DTEMIRGAZIYEV
 	  
   </title>
 
@@ -48,41 +48,28 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						youtube-dl
+						Удаление старых ядер в CentOS
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Mon, Aug 21, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/youtube-dl" class="uk-button uk-button-mini">#youtube-dl</a></p>
+					<p class="uk-article-meta">Posted on Sun, Aug 27, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/yum" class="uk-button uk-button-mini">#yum</a> <a href="https://dtemirgaziyev.github.io//tags/package-cleanup" class="uk-button uk-button-mini">#package-cleanup</a> <a href="https://dtemirgaziyev.github.io//tags/sed" class="uk-button uk-button-mini">#sed</a></p>
 
           
-					<p>youtube-dl - консольная утилита для загрузки видео с YouTube и множества других сайтов и видеохостингов.</p>
+					<p>Корректное удаление старых ядер и очистка места на разделе /boot в CentOS (и RHEL).</p>
 
-<p>Установить в Fedora:</p>
+<p>Установим пакет с дополнительными утилитами для yum:</p>
 
-<pre><code class="language-bash">sudo dnf -y install youtube-dl
+<pre><code class="language-bash">sudo yum -y install yum-utils
 </code></pre>
 
-<p>В CentOS для установки нужно подключить репозиторий EPEL:</p>
+<p>Удаляем старые ядра, где <code>--count=2</code> - количество ядер которое нужно оставить:</p>
 
-<pre><code class="language-bash">sudo yum install epel-release
-sudo yum -y install epel-release
+<pre><code class="language-bash">sudo package-cleanup --oldkernels --count=2
 </code></pre>
 
-<p>Чтобы скачать видео достаточно команды:</p>
+<p>Для того что бы пакетный менеджер сам контролировал количество установленных в системе ядер нужно изменить параметр <strong>installonly_limit</strong> в конфигурационном файле <strong>/etc/yum.conf</strong>:</p>
 
-<pre><code class="language-bash">youtube-dl https://ссылка_на_видео
+<pre><code class="language-bash">sudo sed -i 's/installonly_limit=5/installonly_limit=2/' /etc/yum.conf
 </code></pre>
-
-<p>Смотрим список с доступными форматами и разрешениями для видео:</p>
-
-<pre><code class="language-bash">youtube-dl -F https://ссылка_на_видео
-</code></pre>
-
-<p>Скачиваем видео в выбранном формате и разрешении, для этого укажите код (в моем случае - 22):</p>
-
-<pre><code class="language-bash">youtube-dl -f 22 https://ссылка_на_видео
-</code></pre>
-
-<p>Полный список поддерживаемых сайтов для загрузки видео <a href="http://rg3.github.io/youtube-dl/supportedsites.html">здесь</a>.</p>
           
 				</article>
 			</div>
@@ -93,10 +80,8 @@ sudo yum -y install epel-release
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/21/bash-history/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/26/display-weather-in-cli/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -114,8 +99,6 @@ sudo yum -y install epel-release
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/">Удаление старых ядер в CentOS</a></li>
-              
             
               
               
@@ -129,6 +112,8 @@ sudo yum -y install epel-release
             
               
               
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
               
             
               
@@ -144,13 +129,9 @@ sudo yum -y install epel-release
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
-              
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
               
             
               
@@ -166,8 +147,6 @@ sudo yum -y install epel-release
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
-              
             
               
               
@@ -177,8 +156,6 @@ sudo yum -y install epel-release
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
               
             
               

@@ -6,10 +6,19 @@
     <description>Recent content in Yum on DTEMIRGAZIYEV</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Aug 2017 01:56:40 +0500</lastBuildDate>
+    <lastBuildDate>Sun, 27 Aug 2017 14:35:30 +0500</lastBuildDate>
     
 	<atom:link href="https://dtemirgaziyev.github.io/tags/yum/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Удаление старых ядер в CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/</link>
+      <pubDate>Sun, 27 Aug 2017 14:35:30 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/</guid>
+      <description>&lt;p&gt;Корректное удаление старых ядер и очистка места на разделе /boot в CentOS (и RHEL).&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Подключение сторонних репозиториев в CentOS</title>
