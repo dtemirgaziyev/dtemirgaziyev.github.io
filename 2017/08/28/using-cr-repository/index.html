@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/12/install-nvidia-drivers/" />
+  <link rel="canonical" href="/2017/08/28/using-cr-repository/" />
   
   <title>
 	  
-	    Установка драйверов NVIDIA в Fedora | DTEMIRGAZIYEV
+	    Использование репозитория CR в CentOS | DTEMIRGAZIYEV
 	  
   </title>
 
@@ -48,58 +48,28 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Установка драйверов NVIDIA в Fedora
+						Использование репозитория CR в CentOS
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Sat, Aug 12, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/nvidia" class="uk-button uk-button-mini">#nvidia</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/bumblebee" class="uk-button uk-button-mini">#bumblebee</a></p>
+					<p class="uk-article-meta">Posted on Mon, Aug 28, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/repository" class="uk-button uk-button-mini">#repository</a> <a href="https://dtemirgaziyev.github.io//tags/cr" class="uk-button uk-button-mini">#cr</a></p>
 
           
-					<p>Устанавливаем проприетарные драйвера для видеокарт NVIDIA в Fedora. В заметке описывается установка проприетарного драйвера из репозитория RPMFusion и установка драйвера Bumblebee для NVIDIA Optimus.</p>
+					<p>Репозиторий CR (Continuous Release) позволяет устанавливать исправления и обновления безопасности которые уже были выпущены для новой версии RHEL.</p>
 
-<p>Как определить какой драйвер устанавливать? Можно посмотреть вывод следующей команды:</p>
+<p>На момент написания заметки, текущей версией CentOS является 7.3 тогда как текущая версия RHEL уже 7.4. Здесь и нужен репозиторий CR который позволит установить исправления и обновления связанные с безопасностью для RHEL 7.4 не дожидаясь выхода CentOS 7.4.</p>
 
-<pre><code class="language-bash">lspci | grep VGA
+<p>Подключение репозитория CR в CentOS 7:</p>
+
+<pre><code class="language-bash">sudo yum update
+sudo yum-config-manager --enable cr
 </code></pre>
 
-<p>Если в выводе присутствуют видеокарты Intel и NVIDIA, то устанавливать нужно драйвер Bumblebee.</p>
+<p>Подключение репозитория CR в CentOS 5 и 6:</p>
 
-<h4 id="установка-драйвера-из-rpmfusion"><strong>Установка драйвера из RPMFusion</strong></h4>
-
-<p>Подключаем репозиторий RPMFusion:</p>
-
-<pre><code class="language-bash">sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+<pre><code class="language-bash">sudo yum install centos-release-cr
 </code></pre>
 
-<p>Устанавливаем драйвер для видеокарт NVIDIA:</p>
-
-<pre><code class="language-bash">sudo dnf install akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs kernel-devel
-</code></pre>
-
-<p>Если вы являетесь пользователем устаревшей модели видеокарты NVIDIA, посмотрите варианты установки драйверов для устаревших видеокарт <a href="https://rpmfusion.org/Howto/NVIDIA#Legacy_GeForce_8.2F9.2F200">здесь</a>.</p>
-
-<p>После завершения установки, нужно вырезать свободный драйвер Nouveau из образа initrd:</p>
-
-<pre><code class="language-bash">sudo dracut -f /boot/initramfs-$(uname -r).img $(uname -r)
-</code></pre>
-
-<h4 id="установка-драйвера-bumblebee"><strong>Установка драйвера Bumblebee</strong></h4>
-
-<p>Подключаем репозиторий Bumblebee:</p>
-
-<pre><code class="language-bash">sudo dnf install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.2-1.noarch.rpm http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm
-</code></pre>
-
-<p>И устанавливаем драйвер Bumblebee для видеокарт NVIDIA Optimus:</p>
-
-<pre><code class="language-bash">sudo dnf install bumblebee-nvidia bbswitch-dkms primus kernel-devel
-</code></pre>
-
-<p>Пример запуска панели настройки NVIDIA:</p>
-
-<pre><code class="language-bash">optirun -b none nvidia-settings -c :8
-</code></pre>
-
-<p>Более подробная информация по использованию Bumblebee доступна на <a href="https://fedoraproject.org/wiki/Bumblebee">Wiki</a>.</p>
+<p>Подробную информацию про репозиторий CR можете почитать на <a href="https://wiki.centos.org/AdditionalResources/Repositories/CR">Wiki</a>.</p>
           
 				</article>
 			</div>
@@ -110,10 +80,8 @@
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -135,13 +103,17 @@
               
               
               
-            
-              
-              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/">Удаление старых ядер в CentOS</a></li>
               
             
               
               
+              
+            
+              
+              
+              
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/install-dokuwiki/">Установка DokuWiki на CentOS</a></li>
               
             
               
@@ -157,11 +129,11 @@
               
               
               
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">Подключение сторонних репозиториев в CentOS</a></li>
+              
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
               
             
               
@@ -180,8 +152,6 @@
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
               
             
               

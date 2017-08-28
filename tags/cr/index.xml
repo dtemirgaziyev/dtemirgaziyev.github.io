@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cr on DTEMIRGAZIYEV</title>
+    <link>https://dtemirgaziyev.github.io/tags/cr/</link>
+    <description>Recent content in Cr on DTEMIRGAZIYEV</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Aug 2017 14:51:17 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/cr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Использование репозитория CR в CentOS</title>
+      <link>https://dtemirgaziyev.github.io/2017/08/28/using-cr-repository/</link>
+      <pubDate>Mon, 28 Aug 2017 14:51:17 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/08/28/using-cr-repository/</guid>
+      <description>&lt;p&gt;Репозиторий CR (Continuous Release) позволяет устанавливать исправления и обновления безопасности которые уже были выпущены для новой версии RHEL.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
