@@ -70,12 +70,12 @@
 <pre><code class="language-bash">sudo dnf upgrade --refresh
 </code></pre>
 
-<p>Скачиваем пакеты для обновления системы:</p>
+<p>Скачиваем пакеты для обновления системы, где <code>--releasever=26</code> - версия на которую хотим обновиться:</p>
 
 <pre><code class="language-bash">sudo dnf system-upgrade download --releasever=26
 </code></pre>
 
-<p>Запускаем процесс обновления системы, после перезагрузки:</p>
+<p>Запустим процесс обновления системы после перезагрузки:</p>
 
 <pre><code class="language-bash">sudo dnf system-upgrade reboot
 </code></pre>
