@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/12/install-nvidia-drivers/" />
+  <link rel="canonical" href="/2017/09/02/removing-comments-from-config-files/" />
   
   <title>
 	  
-	    Установка драйверов NVIDIA в Fedora | DTEMIRGAZIYEV
+	    Очистка конфигурационных файлов от комментариев | DTEMIRGAZIYEV
 	  
   </title>
 
@@ -48,58 +48,38 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Установка драйверов NVIDIA в Fedora
+						Очистка конфигурационных файлов от комментариев
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Sat, Aug 12, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/nvidia" class="uk-button uk-button-mini">#nvidia</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/bumblebee" class="uk-button uk-button-mini">#bumblebee</a></p>
+					<p class="uk-article-meta">Posted on Sat, Sep 2, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/grep" class="uk-button uk-button-mini">#grep</a> <a href="https://dtemirgaziyev.github.io//tags/sed" class="uk-button uk-button-mini">#sed</a> <a href="https://dtemirgaziyev.github.io//tags/bash-functions" class="uk-button uk-button-mini">#bash functions</a></p>
 
           
-					<p>Устанавливаем проприетарные драйвера для видеокарт NVIDIA в Fedora. В заметке описывается установка проприетарного драйвера из репозитория RPMFusion и установка драйвера Bumblebee для NVIDIA Optimus.</p>
+					<p>Как легко очистить конфигурационный файл от комментариев с помощью стандартных утилит <code>grep</code> и <code>sed</code>.</p>
 
-<p>Как определить какой драйвер устанавливать? Можно посмотреть вывод следующей команды:</p>
+<p>Вывести содержимое конфигурационного файла без комментариев с помощью утилит <code>grep</code> и <code>sed</code>:</p>
 
-<pre><code class="language-bash">lspci | grep VGA
+<pre><code class="language-bash">grep -Ev '(^[[:space:]]*([#;!].*)?$)' /etc/httpd/conf/httpd.conf
+sed 's/#.*//;/^\s*$/d' /etc/httpd/conf/httpd.conf
 </code></pre>
 
-<p>Если в выводе присутствуют видеокарты Intel и NVIDIA, то устанавливать нужно драйвер Bumblebee.</p>
+<p>Создать на основе оригинального конфигурационного файла, новый очищенный от комментариев конфигурационный файл можно так:</p>
 
-<h4 id="установка-драйвера-из-rpmfusion"><strong>Установка драйвера из RPMFusion</strong></h4>
-
-<p>Подключаем репозиторий RPMFusion:</p>
-
-<pre><code class="language-bash">sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+<pre><code class="language-bash">cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.orig
+grep -Ev '(^[[:space:]]*([#;!].*)?$)' /etc/httpd/conf/httpd.conf &gt; /etc/httpd/conf/httpd.conf
 </code></pre>
 
-<p>Устанавливаем драйвер для видеокарт NVIDIA:</p>
+<p>Можно добавить функцию <code>catcfg()</code> в файл <strong>~/.bashrc</strong> при необходимости частого использования:</p>
 
-<pre><code class="language-bash">sudo dnf install akmod-nvidia xorg-x11-drv-nvidia xorg-x11-drv-nvidia-libs kernel-devel
+<pre><code class="language-bash">catcfg() {
+grep -Ev '(^[[:space:]]*([#;!].*)?$)' $1
+}
 </code></pre>
 
-<p>Если вы являетесь пользователем устаревшей модели видеокарты NVIDIA, посмотрите варианты установки драйверов для устаревших видеокарт <a href="https://rpmfusion.org/Howto/NVIDIA#Legacy_GeForce_8.2F9.2F200">здесь</a>.</p>
+<p>Примеры использования:</p>
 
-<p>После завершения установки, нужно вырезать свободный драйвер Nouveau из образа initrd:</p>
-
-<pre><code class="language-bash">sudo dracut -f /boot/initramfs-$(uname -r).img $(uname -r)
+<pre><code class="language-bash">catcfg /etc/httpd/conf/httpd.conf
+catcfg /etc/httpd/conf/httpd.conf &gt; /etc/httpd/conf/httpd.conf
 </code></pre>
-
-<h4 id="установка-драйвера-bumblebee"><strong>Установка драйвера Bumblebee</strong></h4>
-
-<p>Подключаем репозиторий Bumblebee:</p>
-
-<pre><code class="language-bash">sudo dnf install http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee/fedora$(rpm -E %fedora)/noarch/bumblebee-release-1.2-1.noarch.rpm http://install.linux.ncsu.edu/pub/yum/itecs/public/bumblebee-nonfree/fedora$(rpm -E %fedora)/noarch/bumblebee-nonfree-release-1.2-1.noarch.rpm
-</code></pre>
-
-<p>И устанавливаем драйвер Bumblebee для видеокарт NVIDIA Optimus:</p>
-
-<pre><code class="language-bash">sudo dnf install bumblebee-nvidia bbswitch-dkms primus kernel-devel
-</code></pre>
-
-<p>Пример запуска панели настройки NVIDIA:</p>
-
-<pre><code class="language-bash">optirun -b none nvidia-settings -c :8
-</code></pre>
-
-<p>Более подробная информация по использованию Bumblebee доступна на <a href="https://fedoraproject.org/wiki/Bumblebee">Wiki</a>.</p>
           
 				</article>
 			</div>
@@ -110,10 +90,8 @@
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/28/using-cr-repository/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -139,19 +117,7 @@
               
               
               
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/27/remove-old-kernels/">Удаление старых ядер в CentOS</a></li>
               
             
               
@@ -165,7 +131,13 @@
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
+            
+              
+              
+              
+            
+              
+              
               
             
               
@@ -175,7 +147,13 @@
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
+            
+              
+              
+              
+            
+              
+              
               
             
               
@@ -185,19 +163,9 @@
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
-              
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
               
             
               
