@@ -59,9 +59,7 @@
 <p>Вывести содержимое конфигурационного файла без комментариев с помощью утилит <code>grep</code> и <code>sed</code>:</p>
 
 <pre><code class="language-bash">grep -Ev '(^[[:space:]]*([#;!].*)?$)' /etc/httpd/conf/httpd.conf
-</code></pre>
-
-<pre><code class="language-bash">sed 's/#.*//;/^\s*$/d' /etc/httpd/conf/httpd.conf
+sed 's/#.*//;/^\s*$/d' /etc/httpd/conf/httpd.conf
 </code></pre>
 
 <p>Создать на основе оригинального конфигурационного файла, новый очищенный от комментариев конфигурационный файл можно так:</p>
