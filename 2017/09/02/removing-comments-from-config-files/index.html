@@ -65,7 +65,7 @@ sed 's/#.*//;/^\s*$/d' /etc/httpd/conf/httpd.conf
 <p>Создать на основе оригинального конфигурационного файла, новый очищенный от комментариев конфигурационный файл можно так:</p>
 
 <pre><code class="language-bash">cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.orig
-grep -Ev '(^[[:space:]]*([#;!].*)?$)' /etc/httpd/conf/httpd.conf &gt; /etc/httpd/conf/httpd.conf
+grep -Ev '(^[[:space:]]*([#;!].*)?$)' /etc/httpd/conf/httpd.conf.orig &gt; /etc/httpd/conf/httpd.conf
 </code></pre>
 
 <p>Можно добавить функцию <code>catcfg()</code> в файл <strong>~/.bashrc</strong> при необходимости частого использования:</p>
@@ -75,10 +75,9 @@ grep -Ev '(^[[:space:]]*([#;!].*)?$)' $1
 }
 </code></pre>
 
-<p>Примеры использования:</p>
+<p>Пример использования:</p>
 
 <pre><code class="language-bash">catcfg /etc/httpd/conf/httpd.conf
-catcfg /etc/httpd/conf/httpd.conf &gt; /etc/httpd/conf/httpd.conf
 </code></pre>
           
 				</article>
