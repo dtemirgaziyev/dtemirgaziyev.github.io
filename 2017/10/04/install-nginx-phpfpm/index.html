@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/11/lamp/" />
+  <link rel="canonical" href="/2017/10/04/install-nginx-phpfpm/" />
   
   <title>
 	  
-	    Установка LAMP в CentOS/Fedora | Linux System Administration
+	    Установка и базовая настройка Nginx &#43; PHP-FPM | Linux System Administration
 	  
   </title>
 
@@ -48,133 +48,184 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Установка LAMP в CentOS/Fedora
+						Установка и базовая настройка Nginx &#43; PHP-FPM
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Fri, Aug 11, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/lamp" class="uk-button uk-button-mini">#lamp</a> <a href="https://dtemirgaziyev.github.io//tags/apache" class="uk-button uk-button-mini">#apache</a> <a href="https://dtemirgaziyev.github.io//tags/mysql" class="uk-button uk-button-mini">#mysql</a> <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/wordpress" class="uk-button uk-button-mini">#wordpress</a></p>
+					<p class="uk-article-meta">Posted on Wed, Oct 4, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/centos" class="uk-button uk-button-mini">#centos</a> <a href="https://dtemirgaziyev.github.io//tags/lemp" class="uk-button uk-button-mini">#lemp</a> <a href="https://dtemirgaziyev.github.io//tags/nginx" class="uk-button uk-button-mini">#nginx</a> <a href="https://dtemirgaziyev.github.io//tags/php-fpm" class="uk-button uk-button-mini">#php-fpm</a> <a href="https://dtemirgaziyev.github.io//tags/mysql" class="uk-button uk-button-mini">#mysql</a> <a href="https://dtemirgaziyev.github.io//tags/php" class="uk-button uk-button-mini">#php</a></p>
 
           
-					<p>Подробная инструкция по установке LAMP (Linux+Apache+MySQL+PHP) в CentOS и Fedora на примере WordPress.</p>
+					<p>Рассмотрим базовую установку и настройку Nginx с PHP-FPM на примере дистрибутива CentOS 7 и WordPress.</p>
 
-<h4 id="обновление-системы"><strong>Обновление системы</strong></h4>
+<h4 id="обновление-и-первичная-настройка"><strong>Обновление и первичная настройка</strong></h4>
 
-<p>Установите последние обновления на сервер:</p>
+<p>Устанавливаем обновления и перезагружаем сервер:</p>
 
 <pre><code class="language-bash">sudo yum update
-sudo dnf upgrade
+systemctl reboot
 </code></pre>
 
-<p>Установите дополнительное ПО для администрирования системы:</p>
+<p>Подключаем репозитории EPEL и Nginx:</p>
 
-<pre><code class="language-bash">sudo yum -y install bash-completion vim wget screen policycoreutils-python
-sudo dnf -y install bash-completion vim wget screen policycoreutils-python-utils
+<pre><code class="language-bash">sudo yum install epel-release
+sudo yum install http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 </code></pre>
 
-<p>После обновления обычно рекомендуется перезагрузить систему:</p>
+<p>Устанавливаем дополнительные программы для администрирования системы:</p>
 
-<pre><code class="language-bash">systemctl reboot
+<pre><code class="language-bash">sudo yum -y install bash-completion wget vim screen htop net-tools yum-plugin-priorities
 </code></pre>
 
-<h4 id="установка-lamp"><strong>Установка LAMP</strong></h4>
+<p>Теперь защитим основной репозиторий CentOS с помощью плагина yum-priorities:</p>
 
-<p>Установите все необходимые компоненты для WordPress: веб сервер Apache, службу управления базами данных MariaDB, PHP и необходимые модули.</p>
-
-<pre><code class="language-bash">sudo yum -y install httpd mariadb mariadb-server php php-mysqld
-sudo dnf -y install httpd mariadb mariadb-server php php-mysqlnd
+<pre><code class="language-bash">sudo sed -i '/name=*/a priority=1' /etc/yum.repos.d/CentOS-*.repo
 </code></pre>
 
-<p>Измените конфигурацию сетевого экрана для доступа по протоколам HTTP и HTTPS:</p>
+<p>Исключим возможность установки и обновлений пакетов с названием nginx* из EPEL репозитория (мы возьмем актуальную версию из оф. репозитория):</p>
 
-<pre><code class="language-bash">sudo firewall-cmd --add-service={http,https} --permanent
-sudo firewall-cmd --reload
+<pre><code class="language-bash">sudo sed -i '/name=*/a exclude=nginx*' /etc/yum.repos.d/epel*.repo
 </code></pre>
 
-<p>Запустите и активируйте автоматический запуск для служб веб сервера Apache и MariaDB:</p>
+<h4 id="установка-и-базовая-настройка-nginx-php-fpm"><strong>Установка и базовая настройка Nginx + PHP-FPM</strong></h4>
 
-<pre><code class="language-bash">sudo systemctl start httpd mariadb
-sudo systemctl enable httpd mariadb
+<p>Устанавливаем Nginx, MariaDB (клиент и сервер), PHP, PHP-FPM и модуль для работы с MySQL:</p>
+
+<pre><code class="language-bash">sudo yum -y install nginx php php-mysql php-fpm mariadb mariadb-server
 </code></pre>
 
-<h4 id="настройка-web-сервера"><strong>Настройка Web-сервера</strong></h4>
+<p>Добавим разрешающие правила в Firewalld:</p>
 
-<p>Скачайте архив WordPress с официального сайта:</p>
-
-<pre><code class="language-bash">wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
+<pre><code class="language-bash">sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-service=https
 </code></pre>
 
-<p>Разархивируйте архив WordPress в директорию <strong>/var/www</strong>:</p>
+<p>Запускаем и активируем автоматический запуск служб Nginx и MariaDB:</p>
 
-<pre><code class="language-bash">sudo tar xzvf /tmp/wordpress.tar.gz -C /var/www
+<pre><code class="language-bash">sudo systemctl start nginx mariadb
+sudo systemctl enable nginx mariadb
 </code></pre>
 
-<p>Создайте конфигурационный файл виртуального хоста <strong>/etc/httpd/conf.d/mysite.conf</strong> со следующим содержимым:</p>
-
-<pre><code>&lt;VirtualHost *:80&gt;
-    ServerName mysite.kz
-    ServerAlias mysite.kz
-    DocumentRoot /var/www/wordpress
-    ErrorLog /var/log/httpd/error_mysite.kz.log
-    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-agent}i\&quot;&quot; mysite.kz
-    CustomLog /var/log/httpd/access_mysite.kz.log mysite.kz
-    &lt;Directory /var/www/wordpress&gt;
-        AllowOverride All
-        Options Indexes FollowSymLinks
-        Require all granted
-    &lt;/Directory&gt;
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<p>Перезапустите службу Web-сервера:</p>
-
-<pre><code class="language-bash">sudo systemctl restart httpd
-</code></pre>
-
-<h4 id="создание-и-настройка-базы-данных"><strong>Создание и настройка базы данных</strong></h4>
-
-<p>Сделайте первичную настройку службы управления базами данных MariaDB:</p>
+<p>Сделаем первичную настройку сервера MariaDB:</p>
 
 <pre><code class="language-bash">mysql_secure_installation
 </code></pre>
 
-<p>Зайдите в консоль службы управления базами данных MariaDB:</p>
+<p>Создадим пользователя и БД в консоли MySQL:</p>
 
 <pre><code class="language-bash">mysql -u root -p
-</code></pre>
-
-<p>Создайте пользователя и базу данных для WordPress:</p>
-
-<pre><code class="language-bash">CREATE USER wordpress@localhost IDENTIFIED BY &quot;Password&quot;;
+CREATE USER wordpress@localhost IDENTIFIED BY &quot;Password&quot;;
 CREATE DATABASE wordpressdb;
 </code></pre>
 
-<p>Выдайте все права на базу данных <strong>wordpressdb</strong> пользователю <strong>wordpress@localhost</strong>:</p>
+<p>Выдадим все права на БД нашему пользователю:</p>
 
 <pre><code class="language-bash">GRANT ALL PRIVILEGES ON wordpressdb.* TO wordpress@localhost;
 FLUSH PRIVILEGES;
 </code></pre>
 
-<h4 id="установка-wordpress"><strong>Установка WordPress</strong></h4>
+<p>Скачаем архив WordPress с оф. сайта и положим в директорию <strong>/var/www</strong></p>
 
-<p>Перейдите в директорию <strong>/var/www/wordpress</strong> и скопируйте пример конфигурационного файла WordPress:</p>
-
-<pre><code class="language-bash">cd /var/www/wordpress
-cp wp-config-sample.php wp-config.php
+<pre><code class="language-bash">wget https://wordpress.org/latest.tar.gz -O /tmp/wordpress.tar.gz
+sudo tar xzvf /tmp/wordpress.tar.gz -C /var/www
 </code></pre>
 
-<p>Измените в конфигурационном файле <strong>wp-config.php</strong> следующие строки:</p>
+<p>Теперь немного поднастроим PHP и PHP-FPM. Обязательно отключите <code>cgi_fix_pathinfo</code> в <strong>/etc/php.ini</strong></p>
 
-<pre><code>define('DB_NAME', 'wordpressdb');
-define('DB_USER', 'wordpress');
-define('DB_PASSWORD', 'Password');
+<pre><code class="language-bash">cgi.fix_pathinfo=0
 </code></pre>
 
-<p>Измените права доступа на директорию в которой лежат файлы WordPress:</p>
+<p>Настроим PHP-FPM на работу через unix сокеты и укажем пользователя и группу от имени которых будет работать сервер. Отредактируйте <strong>/etc/php-fpm.d/www.conf</strong></p>
 
-<pre><code class="language-bash">sudo chown -R apache:apache /var/www/wordpress
-sudo chmod -R 750 /var/www/wordpress
+<pre><code class="language-bash">listen = /var/run/php-fpm/php-fpm.sock
+user = nginx
+group = nginx
 </code></pre>
 
-<p>Перейдите в браузере по адресу: <strong>mysite.kz/wp-admin/install.php</strong>, заполните все поля и нажмите «Установить WordPress».</p>
+<p>Запускаем и активируем автоматический запуск службы PHP-FPM:</p>
+
+<pre><code class="language-bash">sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+</code></pre>
+
+<p>Отредактируйте конфигурационный файл <strong>/etc/nginx/nginx.conf</strong>, вот пример конфигурационного файла:</p>
+
+<pre><code class="language-bash">user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log warn;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    include /etc/nginx/conf.d/*.conf;
+}
+</code></pre>
+
+<p>Затем создайте конфигурационный файл для сайта в директории <strong>/etc/nginx/conf.d</strong>, это пример конфига для сайтов на WordPress:</p>
+
+<pre><code class="language-bash">server {
+    listen       80;
+    server_name  mysite.com www.mysite.com *.mysite.com;
+
+    root   /var/www/mysite;
+    index index.php index.html index.htm;
+
+    location / {
+        try_files $uri $uri/ /index.php?q=$uri&amp;$args;
+    }
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+}
+</code></pre>
+
+<p>Измените права на директории где лежит сайт:</p>
+
+<pre><code class="language-bash">sudo chown -R nginx:nginx /var/www/mysite
+sudo chmod -R 750 /var/www/mysite
+</code></pre>
+
+<p>Проверяем конфигурационный файл на ошибки и перезагружаем Nginx:</p>
+
+<pre><code class="language-bash">nginx -t
+nginx -s reload
+</code></pre>
+
+<p>Это лишь базовая настройка окружения, поэтому для дальнейшего погружения рекомендую ознакомиться с официальной документацией:</p>
+
+<ul>
+<li><a href="http://nginx.org/ru/docs/">Nginx</a></li>
+<li><a href="https://dev.mysql.com/doc/">MySQL</a></li>
+<li><a href="https://mariadb.com/kb/en/library/documentation/">MariaDB</a></li>
+<li><a href="http://php.net/docs.php">PHP</a></li>
+</ul>
           
 				</article>
 			</div>
@@ -185,10 +236,10 @@ sudo chmod -R 750 /var/www/wordpress
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">&lt; Previous</a></li>
+            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/10/04/reduce-headers-in-gnome3/">&lt; Previous</a></li>
           
           
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/09/02/removing-comments-from-config-files/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -209,8 +260,6 @@ sudo chmod -R 750 /var/www/wordpress
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/10/04/install-nginx-phpfpm/">Установка и базовая настройка Nginx &#43; PHP-FPM</a></li>
               
             
               
@@ -258,13 +307,9 @@ sudo chmod -R 750 /var/www/wordpress
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/fedora-system-upgrading/">Fedora - обновление системы</a></li>
-              
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
               
             
               
@@ -280,17 +325,15 @@ sudo chmod -R 750 /var/www/wordpress
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
-              
             
               
               
               
+                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
+              
             
               
               
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
               
             
               

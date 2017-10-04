@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gnome on Linux System Administration</title>
+    <link>https://dtemirgaziyev.github.io/tags/gnome/</link>
+    <description>Recent content in Gnome on Linux System Administration</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Oct 2017 22:15:48 +0500</lastBuildDate>
+    
+	<atom:link href="https://dtemirgaziyev.github.io/tags/gnome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Уменьшение заголовков окон в GNOME 3</title>
+      <link>https://dtemirgaziyev.github.io/2017/10/04/reduce-headers-in-gnome3/</link>
+      <pubDate>Wed, 04 Oct 2017 22:15:48 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/10/04/reduce-headers-in-gnome3/</guid>
+      <description>&lt;p&gt;Короткая заметка про уменьшение заголовков окон в GNOME 3, не знаю зачем их сделали такими большими.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
