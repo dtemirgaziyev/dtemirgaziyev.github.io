@@ -123,6 +123,11 @@
   </url>
   
   <url>
+    <loc>https://dtemirgaziyev.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://dtemirgaziyev.github.io/tags/centos/</loc>
     <lastmod>2017-10-04T21:42:17+05:00</lastmod>
     <priority>0</priority>
@@ -203,12 +208,6 @@
   <url>
     <loc>https://dtemirgaziyev.github.io/tags/lemp/</loc>
     <lastmod>2017-10-04T21:42:17+05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dtemirgaziyev.github.io/</loc>
-    <lastmod>2017-10-04T22:15:48+05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,6 +316,12 @@
   <url>
     <loc>https://dtemirgaziyev.github.io/tags/yum/</loc>
     <lastmod>2017-08-27T14:35:30+05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dtemirgaziyev.github.io/</loc>
+    <lastmod>2017-10-04T22:15:48+05:00</lastmod>
     <priority>0</priority>
   </url>
   

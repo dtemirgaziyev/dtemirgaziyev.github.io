@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Sed on Linux System Administration</title>
+    <title>Sed on Заметки Linux сисадмина</title>
     <link>https://dtemirgaziyev.github.io/tags/sed/</link>
-    <description>Recent content in Sed on Linux System Administration</description>
+    <description>Recent content in Sed on Заметки Linux сисадмина</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy; &lt;a href=&#34;https://github.com/dtemirgaziyev&#34;&gt;dtemirgaziyev.github.io&lt;/a&gt; 2017</copyright>
     <lastBuildDate>Sat, 02 Sep 2017 20:20:15 +0500</lastBuildDate>
     
 	<atom:link href="https://dtemirgaziyev.github.io/tags/sed/index.xml" rel="self" type="application/rss+xml" />
