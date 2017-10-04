@@ -18,7 +18,7 @@
       <pubDate>Wed, 04 Oct 2017 21:42:17 +0500</pubDate>
       
       <guid>https://dtemirgaziyev.github.io/2017/10/04/install-nginx-phpfpm/</guid>
-      <description>&lt;p&gt;Рассмотрим базовую установку и настройку Nginx с PHP-FPM на примере дистрибутива CentOS 7 и WordPress.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Установка и базовая настройка Nginx в режиме PHP-FPM на примере дистрибутива CentOS 7 и WordPress.&lt;/p&gt;</description>
     </item>
     
   </channel>
