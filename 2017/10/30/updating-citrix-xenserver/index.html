@@ -68,8 +68,8 @@
 
 <p>Если свободного пространства на корневом (<code>/</code>) разделе осталось мало, рекомендуется очистить место чтобы не подвесить сервер во время обновлений:</p>
 
-<pre><code class="language-bash">rm -rf ~/*.zip
-rm -rf /var/log/*.gz
+<pre><code class="language-bash">rm -f ~/*.zip
+rm -f /var/log/*.gz
 </code></pre>
 
 <p>Создадим каталог для файлов обновлений:</p>
@@ -77,10 +77,10 @@ rm -rf /var/log/*.gz
 <pre><code class="language-bash">mkdir -p ~/xsupdates
 </code></pre>
 
-<p>Скачиваем обновления с помощью утилиты <code>wget</code> и разархивируем их:</p>
+<p>Затем скачаем обновления с помощью утилиты <code>wget</code> и разархивируем файлы:</p>
 
-<pre><code class="language-bash">wget http://ссылка -O ~/xsupdates
-unzip ~/xsupdates/updf.zip
+<pre><code class="language-bash">wget http://downloadns.citrix.com.edgesuite.net/10340/XS65ESP1.zip -O ~/xsupdates
+unzip ~/xsupdates/XS65ESP1.zip
 </code></pre>
 
 <p>Удалим все скачанные zip архивы больше они нам не нужны:</p>
@@ -92,15 +92,15 @@ unzip ~/xsupdates/updf.zip
 
 <p>Загружаем обновление в гипервизор и копируем UUID обновления т.к. далее он нам потребуется:</p>
 
-<pre><code class="language-bash">xe patch-upload file-name=updfile.xsupdate
+<pre><code class="language-bash">xe patch-upload file-name=XS65ESP1.xsupdate
 </code></pre>
 
 <p>И применяем обновление. Где <code>host-uuid</code> - UUID сервера, <code>uuid</code> - UUID обновления которое мы скопировали.</p>
 
-<pre><code class="language-bash">xe patch-apply host-uuid=uuid uuid=upduuid
+<pre><code class="language-bash">xe patch-apply host-uuid=*** uuid=***
 </code></pre>
 
-<p>Проверяем успешно ли установились обновления с помощью команды:</p>
+<p>Проверяем установленные обновления с помощью команды:</p>
 
 <pre><code class="language-bash">xe patch-list
 </code></pre>
@@ -109,8 +109,13 @@ unzip ~/xsupdates/updf.zip
 
 <ul>
 <li><code>restartXAPI</code> - после обновления достаточно перезапустить XAPI с помощью команды <code>xe-toolstack-restart</code>;</li>
-<li><code>restartHost</code> - после обновления потребуется ребутнуть хост.</li>
+<li><code>restartHost</code> - после обновления требуется ребутнуть хост.</li>
 </ul>
+
+<p>После установки и применения всех обновлений можно удалить каталог с обновлениями:</p>
+
+<pre><code class="language-bash">rm -rf ~/xsupdates/
+</code></pre>
           
 				</article>
 			</div>
