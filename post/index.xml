@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Заметки Linux сисадмина</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Oct 2017 22:15:48 +0500</lastBuildDate>
+    <lastBuildDate>Mon, 30 Oct 2017 21:51:07 +0500</lastBuildDate>
     
 	<atom:link href="https://dtemirgaziyev.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Установка обновлений на Citrix XenServer</title>
+      <link>https://dtemirgaziyev.github.io/2017/10/30/updating-citrix-xenserver/</link>
+      <pubDate>Mon, 30 Oct 2017 21:51:07 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/10/30/updating-citrix-xenserver/</guid>
+      <description>&lt;p&gt;Установка патчей и обновлений на Citrix XenServer 6.5 через интерфейс командной строки.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Уменьшение заголовков окон в GNOME 3</title>

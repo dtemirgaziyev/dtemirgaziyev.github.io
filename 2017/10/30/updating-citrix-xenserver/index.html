@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/about/" />
+  <link rel="canonical" href="/2017/10/30/updating-citrix-xenserver/" />
   
   <title>
 	  
-	    Обо мне | Заметки Linux сисадмина
+	    Установка обновлений на Citrix XenServer | Заметки Linux сисадмина
 	  
   </title>
 
@@ -51,21 +51,66 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Обо мне
+						Установка обновлений на Citrix XenServer
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Wed, Oct 4, 2017 | </p>
+					<p class="uk-article-meta">Posted on Mon, Oct 30, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/citrix" class="uk-button uk-button-mini">#citrix</a> <a href="https://dtemirgaziyev.github.io//tags/xenserver" class="uk-button uk-button-mini">#xenserver</a></p>
 
           
-					<p><img src="/images/serveradm.jpg" alt="LinuxSysAdmin" title="Linux SysAdmin" /></p>
+					<p>Установка патчей и обновлений на Citrix XenServer 6.5 через интерфейс командной строки.</p>
 
-<p><strong>Контактные данные</strong></p>
+<h4 id="подготовка-к-обновлению"><strong>Подготовка к обновлению</strong></h4>
+
+<p>Перед установкой проверяем сколько свободного пространства осталось на корневом (<code>/</code>) разделе:</p>
+
+<pre><code class="language-bash">df -h
+</code></pre>
+
+<p>Если свободного пространства на корневом (<code>/</code>) разделе осталось мало, рекомендуется очистить место чтобы не подвесить сервер во время обновлений:</p>
+
+<pre><code class="language-bash">rm -rf ~/*.zip
+rm -rf /var/log/*.gz
+</code></pre>
+
+<p>Создадим каталог для файлов обновлений:</p>
+
+<pre><code class="language-bash">mkdir -p ~/xsupdates
+</code></pre>
+
+<p>Скачиваем обновления с помощью утилиты <code>wget</code> и разархивируем их:</p>
+
+<pre><code class="language-bash">wget http://ссылка -O ~/xsupdates
+unzip ~/xsupdates/updf.zip
+</code></pre>
+
+<p>Удалим все скачанные zip архивы больше они нам не нужны:</p>
+
+<pre><code class="language-bash">rm -f ~/xsupdates/*.zip
+</code></pre>
+
+<h4 id="установка-обновлений"><strong>Установка обновлений</strong></h4>
+
+<p>Загружаем обновление в гипервизор и копируем UUID обновления т.к. далее он нам потребуется:</p>
+
+<pre><code class="language-bash">xe patch-upload file-name=updfile.xsupdate
+</code></pre>
+
+<p>И применяем обновление. Где <code>host-uuid</code> - UUID сервера, <code>uuid</code> - UUID обновления которое мы скопировали.</p>
+
+<pre><code class="language-bash">xe patch-apply host-uuid=uuid uuid=upduuid
+</code></pre>
+
+<p>Проверяем успешно ли установились обновления с помощью команды:</p>
+
+<pre><code class="language-bash">xe patch-list
+</code></pre>
+
+<p>Обратите внимание на значение параметра <code>after-apply-guidance</code>:</p>
 
 <ul>
-<li>Мой профиль на <a href="https://github.com/dtemirgaziyev">GitHub</a></li>
-<li>Связаться со мной в <a href="https://t.me/centosadmin">Telegram</a></li>
+<li><code>restartXAPI</code> - после обновления достаточно перезапустить XAPI с помощью команды <code>xe-toolstack-restart</code>;</li>
+<li><code>restartHost</code> - после обновления потребуется ребутнуть хост.</li>
 </ul>
-
           
 				</article>
 			</div>
@@ -76,10 +121,8 @@
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/10/30/updating-citrix-xenserver/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/10/04/reduce-headers-in-gnome3/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/about/">Next &gt;</a></li>
           
         </ul>
       </div>
