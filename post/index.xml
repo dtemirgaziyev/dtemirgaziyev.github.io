@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Заметки Linux сисадмина</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Oct 2017 21:51:07 +0500</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2017 21:39:17 +0500</lastBuildDate>
     
 	<atom:link href="https://dtemirgaziyev.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Автоматический запуск виртуальных машин в Citrix XenServer</title>
+      <link>https://dtemirgaziyev.github.io/2017/11/19/autostart-vm-xenserver/</link>
+      <pubDate>Sun, 19 Nov 2017 21:39:17 +0500</pubDate>
+      
+      <guid>https://dtemirgaziyev.github.io/2017/11/19/autostart-vm-xenserver/</guid>
+      <description>&lt;p&gt;Настройка автоматического запуска виртуальных машин в Citrix XenServer 6.5&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Установка обновлений на Citrix XenServer</title>

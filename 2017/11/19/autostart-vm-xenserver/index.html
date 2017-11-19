@@ -6,11 +6,11 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="//www.google-analytics.com" />
   
-  <link rel="canonical" href="/2017/08/12/fedora-system-upgrading/" />
+  <link rel="canonical" href="/2017/11/19/autostart-vm-xenserver/" />
   
   <title>
 	  
-	    Fedora - обновление системы | Заметки Linux сисадмина
+	    Автоматический запуск виртуальных машин в Citrix XenServer | Заметки Linux сисадмина
 	  
   </title>
 
@@ -57,63 +57,38 @@
 			<div class="uk-width-large-8-10 uk-width-medium-1-1 uk-width-small-1-1">
 				<article class="uk-article">
 					<h1 class="uk-article-title" style="font-size: 23px;">
-						Fedora - обновление системы
+						Автоматический запуск виртуальных машин в Citrix XenServer
 					</h1>
 					
-					<p class="uk-article-meta">Posted on Sat, Aug 12, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/fedora" class="uk-button uk-button-mini">#fedora</a> <a href="https://dtemirgaziyev.github.io//tags/system-upgrade" class="uk-button uk-button-mini">#system upgrade</a> <a href="https://dtemirgaziyev.github.io//tags/dnf" class="uk-button uk-button-mini">#dnf</a></p>
+					<p class="uk-article-meta">Posted on Sun, Nov 19, 2017 |  <a href="https://dtemirgaziyev.github.io//tags/citrix" class="uk-button uk-button-mini">#citrix</a> <a href="https://dtemirgaziyev.github.io//tags/xenserver" class="uk-button uk-button-mini">#xenserver</a></p>
 
           
-					<p>Процедура обновления Fedora на следующую версию дистрибутива. В данной заметке обновление происходит с версии 25 на 26.</p>
+					<p>Настройка автоматического запуска виртуальных машин в Citrix XenServer 6.5</p>
 
-<h4 id="рекомендуемый-способ"><strong>Рекомендуемый способ</strong></h4>
+<p>Узнайте UUID пула в котором будем включать автозапуск виртуалок:</p>
 
-<p>Обновление Fedora c помощью специального плагина system-upgrade. Этот способ является официально рекомендуемым способом обновления начиная с Fedora 21.</p>
-
-<p>Установим специальный плагин для обновления системы:</p>
-
-<pre><code class="language-bash">sudo dnf -y install dnf-plugin-system-upgrade
+<pre><code class="language-bash">xe pool-list
 </code></pre>
 
-<p>Обновим все установленные пакеты в системе:</p>
+<p>Разрешите автозапуск виртуалок в пуле:</p>
 
-<pre><code class="language-bash">sudo dnf upgrade --refresh
+<pre><code class="language-bash">xe pool-param-set uuid=... other-config:auto_poweron=true
 </code></pre>
 
-<p>Скачиваем пакеты для обновления системы, где <code>--releasever=26</code> - версия на которую хотим обновиться:</p>
+<p>Узнайте UUID виртуалок для которых будем включать автозапуск:</p>
 
-<pre><code class="language-bash">sudo dnf system-upgrade download --releasever=26
+<pre><code class="language-bash">xe vm-list
 </code></pre>
 
-<p>Запустим процесс обновления системы после перезагрузки:</p>
+<p>Включите автозапуск для виртуалок:</p>
 
-<pre><code class="language-bash">sudo dnf system-upgrade reboot
+<pre><code class="language-bash">xe vm-param-set uuid=... other-config:auto_poweron=true
 </code></pre>
 
-<h4 id="альтернативный-способ"><strong>Альтернативный способ</strong></h4>
+<p>Проверка применения настроек автозапуска для пула и виртуалок:</p>
 
-<p>Рекомендуется перейти в виртуальную консоль (<strong>Ctrl+Alt+F2</strong>) или перейти в multi-user уровень выполнения:</p>
-
-<pre><code class="language-bash">sudo systemctl isolate multi-user.target
-</code></pre>
-
-<p>Обновим все установленные пакеты в системе:</p>
-
-<pre><code class="language-bash">sudo dnf upgrade --refresh
-</code></pre>
-
-<p>Очистим кэш в пакетном менеджере:</p>
-
-<pre><code class="language-bash">sudo dnf clean all
-</code></pre>
-
-<p>Обновляем дистрибутив до версии 26:</p>
-
-<pre><code class="language-bash">sudo dnf --releasever=26 distro-sync
-</code></pre>
-
-<p>Перезагружаем систему:</p>
-
-<pre><code class="language-bash">systemctl reboot
+<pre><code class="language-bash">xe pool-param-list uuid=... | grep &quot;other-config&quot;
+xe vm-param-list uuid=... | grep &quot;other-config&quot;
 </code></pre>
           
 				</article>
@@ -125,10 +100,8 @@
       <div class="uk-width-large-8-10">
         <ul class="uk-pagination">
           
-            <li class="uk-float-left"><a href="https://dtemirgaziyev.github.io/2017/08/16/centos-repositories/">&lt; Previous</a></li>
           
-          
-            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Next &gt;</a></li>
+            <li class="uk-float-right"><a href="https://dtemirgaziyev.github.io/2017/10/30/updating-citrix-xenserver/">Next &gt;</a></li>
           
         </ul>
       </div>
@@ -150,6 +123,40 @@
               
               
               
+                <li><a href="https://dtemirgaziyev.github.io/2017/10/30/updating-citrix-xenserver/">Установка обновлений на Citrix XenServer</a></li>
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
+            
+              
+              
+              
             
               
               
@@ -186,53 +193,9 @@
               
               
               
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/21/youtube-dl/">youtube-dl</a></li>
-              
             
               
               
-              
-            
-              
-              
-              
-            
-              
-              
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/install-nvidia-drivers/">Установка драйверов NVIDIA в Fedora</a></li>
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/12/taskwarrior/">Taskwarrior</a></li>
-              
-            
-              
-              
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/install-multimedia-codecs/">Установка мультимедийных кодеков в Fedora</a></li>
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/11/lamp/">Установка LAMP в CentOS/Fedora</a></li>
-              
-            
-              
-              
-              
-                <li><a href="https://dtemirgaziyev.github.io/2017/08/10/fedora-repositories/">Подключение сторонних репозиториев в Fedora</a></li>
               
             
               
